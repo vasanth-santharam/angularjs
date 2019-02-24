@@ -1,0 +1,27 @@
+index.html
+main.ts
+app.modue
+app.component
+anuglar is virutaula dom 
+whatis spec.js
+angularjson is used to configuration
+
+ngmodue is the two binsing
+
+
+directive
+ structual directives
+attributue directive fr style
+
+transforming data not full  applied 
+Key val pipe
+pipe transofrm the on data to another
+
+
+to createthe pipe 
+ng -g-p 
+@anootiaon ic cnoonebt 
+
+type script show type
+
+transofrm to dateain the  pipe
