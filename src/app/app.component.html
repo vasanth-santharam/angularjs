@@ -1,21 +1,109 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
   <h1>
+    Welcome to {{ vasanth }}!
     Welcome to {{ title }}!
+    <span [style.color]="color">Welcome to {{ color }}!</span>
+    
   </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+
+  <input type="button" value="click me " (click)="buttonFn()">
+  <input type="type" [style.display]="display" name="password" id="password" (keyup)="valuechange(this)" value =''>
+  <br>
+  <input type="password" [(ngModel)]='pwd' (input)="valid()"><p [style.color]="pwdColor">{{ pwdStrength }}</p>
 </div>
-<h2>Here are some links to help you start: </h2>
+<table>
+
+  <tr>
+      <td>Name</td>
+      <td>price</td>
+      <td>quantity</td>
+      <td>total</td>
+  </tr>  
+  <tbody  *ngIf="billObj">
+  <tr   *ngFor="let item of billArr">
+    <td>{{item.name}}</td>
+    <td>{{billObj[item.name]}}</td>
+    <td>{{item.quantity}}</td>
+    <td>{{item.quantity * billObj[item.name]}}</td>
+  </tr>
+</tbody>
+
+  <tr *ngIf="!billArr">
+      <td>No row found</td>
+    </tr>
+</table>
+<hr>
+<div style="text-align:center">
+<button (click)='hideshow()'>Hide/show</button>
+</div>
+<hr>
+<hr>
+<select [(ngModel)] = 'selectCountry' (change)="countrySelectFn()" >
+  <option  *ngFor="let c_id of country" value="{{c_id.id}}">{{c_id.value}}</option>
+</select>
+<select [(ngModel)] = 'selectstate' >
+  <option  *ngFor="let s_id of state[selectCountry]"  value="{{s_id.id}}">{{s_id.value}}</option>
+</select>
+<hr>
+<hr>
+
+  
+<div *ngFor="let t_id of arrayTicket">
+  <button id={{t_id.id}} [style.background-color]=t_id.color [(ngModel)] = qtk[t_id.value] (click)= vaildTkFn(); ngDefaultControl >{{t_id.value}}</button>
+</div>
+
+<hr>
+<hr>
+
+<div>
+    This is multple of {{70|add:30}}.
+</div>
+
+<select [(ngModel)]=blogNo (change)='blogNoFn()'>
+  <option value="1">blog 1</option>
+  <option value="2">blog 2</option>
+  <option value="3">blog 3</option>
+</select>
+
 <ul>
   <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
+    <a [routerLink]="['/products']" [queryParams]="{x: 'y'}">Products</a>
   </li>
   <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
+    <a [routerLink]="['/Variants']">Variants</a>
   </li>
   <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
+    <a [routerLink]="['/blog/1/sdf']" [queryParams]="{x: 'y',c:'b'}"  [queryParamsHandling]= 'merge'>blog/1</a>
+  </li>
+  <li>
+    <a [routerLink]="['/blog/2/sss']"  [queryParams]="{sd: 'vasanth',sd:'b'}"fragment="education">blog/2</a>
   </li>
 </ul>
 
+<input type="button" (click)="invokeRequest()" value="GET"/>
+<select [(ngModel)]=getid  (change) = "invokeRequest()">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value='3'>3</option>
+  <option value='4'>4</option>
+  <option value='5'>5</option>
+</select>
+<table>
+  <tr>
+      <td>id</td>
+      <td>firstname</td>
+      <td>last</td>
+      <td>avatar</td>
+  </tr>  
+  <tbody  >
+  <tr *ngFor="let row of resp">
+    <td>{{row.id}}</td>
+    <td>{{row.first_name}}</td>
+    <td>{{row.last_name}}</td>
+    <td>{{row.avatar}}</td>
+  </tr>
+</tbody>
+
+</table>
 <router-outlet></router-outlet>
